@@ -6,3 +6,4 @@ click
 gunicorn
 apscheduler
 requests
+jsonschema
