@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Documentation API</title>
+    <style>
+        pre {
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Documentation de l'API REST</h1>
+
+    <h2>Route: /contrevenants</h2>
+    <p><strong>Exemple:</strong> <code>GET /contrevenants?du=2022-05-08&amp;au=2024-05-15</code></p>
+    <p>Retourne une liste JSON des établissements ayant obtenu des contraventions entre deux dates, avec leur nombre respectif.</p>
+
+    <h2>Route: /infractions</h2>
+    <p><strong>Exemple:</strong> <code>GET /infractions?etablissement=ATLAS%20PIZZA</code></p>
+    <p>Retourne les détails des infractions pour un établissement spécifique.</p>
+
+    <h2>Route: /doc</h2>
+    <p>Affiche cette page de documentation avec le contenu du fichier RAML.</p>
+
+    <h2>Spécification RAML</h2>
+    <pre>{{ raml }}</pre>
+
+    <h2>Route: /plainte</h2>
+    <p><strong>Exemple:</strong> <code>POST /plainte</code></p>
+    <p>Permet de créer une plainte d’inspection. Le corps de la requête doit être un JSON valide (voir RAML ci-dessous).</p>
+</body>
+</html>
+

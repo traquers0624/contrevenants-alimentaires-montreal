@@ -1,0 +1,250 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding-top: 0.5%;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom, #eaf6fc, #ffffff);
+}
+
+header {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+button.round {
+    background-color: #48abe0;
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 31px;
+    height: 100px;
+    width: 100px;
+    box-shadow: 0 2px 4px darkslategray;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button.round:hover {
+    background-color: #65b9e6;
+}
+
+button.round:active {
+    box-shadow: 0 0 2px darkslategray;
+    transform: translateY(2px);
+}
+
+button.round-two {
+    background-color: #44c5a9;
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 31px;
+    height: 80px;
+    width: 80px;
+    box-shadow: 0 2px 4px darkslategray;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button.round-two:hover {
+    background-color: #55d6bc;
+}
+
+button.round-two:active {
+    box-shadow: 0 0 2px darkslategray;
+    transform: translateY(2px);
+}
+
+a, button {
+    font-weight: 500;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+button {
+    padding: 9px 25px;
+    background-color: rgba(0,136,169,1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover {
+    background-color: rgba(0,136,169,0.8);
+}
+
+.main-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    margin-top: 5%;
+    text-align: center;
+}
+
+.form-box {
+    background-color: #e2f3fc;
+    margin: 5% auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 5px;
+    width: 400px;
+}
+
+.black-text {
+    color: black;
+}
+
+table {
+    margin: 5% auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 5px;
+    width: 600px;
+}
+
+
+#column-align form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+#column-align {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    margin: 5% auto;
+    flex-wrap: wrap; /* Allows stacking on smaller screens */
+}
+
+#column-align form {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#column-align h3 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#column-align input[type="date"],
+#column-align button {
+    padding: 8px;
+    font-size: 14px;
+    width: 100%;
+}
+
+select {
+    width: 100%;
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#plainteForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+
+input[type="text"],
+input[type="date"],
+textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;         
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#infractions-resultats table {
+    border-collapse: collapse;
+    width: 100%;
+    border: none;
+}
+
+#infractions-resultats th,
+#infractions-resultats td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+#infractions-resultats th {
+    background-color: #f2f2f2;
+}
+
+.form-box #infractions-resultats {
+    width: 600px;
+    overflow-x: auto;
+    border-radius: 8px;
+    align-self: center;
+}
+
+
+#infractions-resultats table {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}

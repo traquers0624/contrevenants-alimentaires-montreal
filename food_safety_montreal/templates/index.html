@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Page d'accueil">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <title>Recherche de contraventions</title>
+</head>
+<body>
+    <header>
+        <button class="round">
+            <a href="/">ACCUEIL</a>
+        </button>
+        <button class="round-two">
+            <a href="/plainte">PLAINTE</a>
+        </button>
+    </header>
+    <h1 class="main-title">Recherche de contraventions alimentaires</h1>
+    <form method="post" class="form-box">
+        <label>Établissement:</label>
+        <input type="text" name="etablissement">
+        <br>
+
+        <label>Propriétaire:</label>
+        <input type="text" name="proprietaire">
+        <br>
+
+        <label>Rue:</label>
+        <input type="text" name="rue">
+        <br>
+
+        <button type="submit">Rechercher</button>
+    </form>
+
+    <section class="form-box">
+        <h3>Recherche par nom d'établissement</h3>
+        <select id="etablissement-select">
+            <option value="">-- Choisissez un établissement --</option>
+            {% for etab in etablissements %}
+                <option value="{{ etab }}">{{ etab }}</option>
+            {% endfor %}
+        </select>
+        <button id="rechercher-etab">Rechercher</button>
+        <div id="infractions-resultats"></div>
+    </section>
+
+    <section class="form-box" id="column-align">
+        <h3>Recherche par dates</h3>
+        <form action="/contrevenants" method="GET">
+            <!-- JSON -->
+            <h3>Format JSON</h3>
+            <label for="du">Date de début :</label>
+            <input type="date" id="du" name="du" required>
+    
+            <label for="au">Date de fin :</label>
+            <input type="date" id="au" name="au" required>
+    
+            <button type="submit">Rechercher</button>
+        </form>
+        <form id="searchForm">
+            <!-- HTML -->
+            <h3>Format Tableau</h3>
+            <label for="startDate">Date de début :</label>
+            <input type="date" id="startDate" name="du" required>
+    
+            <label for="endDate">Date de fin :</label>
+            <input type="date" id="endDate" name="au" required>
+    
+            <button type="submit">Rechercher</button>
+        </form>
+    </section>
+    
+    <table id="resultsTable">
+        <thead>
+            <tr>
+                <th>Établissement</th>
+                <th>Nombre de contraventions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script>
+        document.getElementById("searchForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+    
+            let startDate = document.getElementById("startDate").value;
+            let endDate = document.getElementById("endDate").value;
+    
+            fetch(`/contrevenants?du=${startDate}&au=${endDate}`)
+                .then(response => response.json())
+                .then(data => {
+                    let table = document.getElementById("resultsTable");
+                    let tbody = table.querySelector("tbody");
+    
+                    tbody.innerHTML = "";
+    
+                    let counts = {};
+                    data.forEach(violation => {
+                        let etablissement = violation.etablissement;
+                        counts[etablissement] = (counts[etablissement] || 0) + 1;
+                    });
+    
+                    for (let [etablissement, count] of Object.entries(counts)) {
+                        let row = document.createElement("tr");
+                        row.innerHTML = `<td>${etablissement}</td><td>${count}</td>`;
+                        tbody.appendChild(row);
+                    }
+    
+                    table.style.display = "table";
+                })
+                .catch(error => console.error("Erreur:", error));
+        });
+    </script>
+    <script>
+        document.getElementById("rechercher-etab").addEventListener("click", function(event) {
+            event.preventDefault();
+            const etab = document.getElementById("etablissement-select").value;
+            if (!etab) return;
+        
+            fetch(`/infractions?etablissement=${encodeURIComponent(etab)}`)
+                .then(response => response.json())
+                .then(data => {
+                    const div = document.getElementById("infractions-resultats");
+                    if (data.length === 0) {
+                        div.innerHTML = "<p>Aucune infraction trouvée.</p>";
+                        return;
+                    }
+        
+                    let html = "<table border='1'><tr><th>Date</th><th>Description</th><th>Adresse</th><th>Montant</th></tr>";
+                    data.forEach(infraction => {
+                        html += `<tr>
+                            <td>${infraction.date}</td>
+                            <td>${infraction.description}</td>
+                            <td>${infraction.adresse}</td>
+                            <td>${infraction.montant}</td>
+                        </tr>`;
+                    });
+                    html += "</table>";
+                    div.innerHTML = html;
+                });
+        });
+    </script>
+</body>
+</html>

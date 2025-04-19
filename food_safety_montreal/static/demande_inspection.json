@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": ["etablissement", "adresse", "ville", "date_visite", "nom_client", "description"],
+    "properties": {
+      "etablissement": { "type": "string" },
+      "adresse": { "type": "string" },
+      "ville": { "type": "string" },
+      "date_visite": { "type": "string", "format": "date" },
+      "nom_client": { "type": "string" },
+      "description": { "type": "string" }
+    }
+  }
+  

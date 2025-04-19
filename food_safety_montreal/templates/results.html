@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Liste de contraventions">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <title>Résultats de la recherche</title>
+</head>
+<body>
+    <h1>Résultats</h1>
+    <a href="/" class="black-text">← Retour</a>
+    
+    {% if results %}
+        <ul>
+        {% for violation in results %}
+            <li>
+                <strong>Établissement:</strong> {{ violation["etablissement"] }}<br>
+                <strong>Propriétaire:</strong> {{ violation["proprietaire"] }}<br>
+                <strong>Adresse:</strong> {{ violation["adresse"] }}<br>
+                <strong>Date:</strong> {{ violation["date"] }}<br>
+                <strong>Description:</strong> {{ violation["description"] }}<br>
+                <strong>Montant:</strong> {{ violation["montant"] }}$<br>
+                <hr>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun résultat trouvé.</p>
+    {% endif %}
+</body>
+</html>

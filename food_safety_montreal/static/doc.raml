@@ -1,0 +1,53 @@
+#%RAML 1.0
+title: Food Safety Montreal API
+version: v1
+baseUri: http://localhost:5000
+
+/etablissements:
+  get:
+    description: Retourne la liste des établissements avec le nombre d'infractions connues, triée par ordre décroissant.
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [
+                { "etablissement": "Pizza Palace", "nombre_infractions": 5 },
+                { "etablissement": "Café Bonjour", "nombre_infractions": 3 }
+              ]
+          application/xml:
+            example: |
+              <etablissements>
+                <etablissement>
+                  <nom>Pizza Bonjour</nom>
+                  <nombre_infractions>12</nombre_infractions>
+                </etablissement>
+                <etablissement>
+                  <nom>Café Palace</nom>
+                  <nombre_infractions>8</nombre_infractions>
+                </etablissement>
+              </etablissements>
+
+/plainte:
+  post:
+    description: |
+      Crée une nouvelle demande d'inspection à la ville.
+      Le corps de la requête doit être un JSON valide conforme au schéma JSON.
+    body:
+      application/json:
+        example: |
+          {
+            "etablissement": "Pizza Nova",
+            "adresse": "123 rue Principale",
+            "ville": "Montréal",
+            "date_visite": "2024-04-01",
+            "client_nom": "Dupont",
+            "client_prenom": "Marie",
+            "description": "Insectes visibles près du comptoir."
+          }
+    responses:
+      201:
+        description: Plainte enregistrée avec succès.
+      400:
+        description: Requête invalide, les données ne respectent pas le schéma JSON.
+
