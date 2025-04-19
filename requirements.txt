@@ -4,6 +4,5 @@ Werkzeug
 itsdangerous
 click
 gunicorn
-sqlite3
 apscheduler
 requests
